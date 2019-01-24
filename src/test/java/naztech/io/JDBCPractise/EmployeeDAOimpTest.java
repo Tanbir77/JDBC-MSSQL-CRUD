@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import DAO.EmployeeDAO;
 import DBUtil.DBConnection;
 import Model.Employee;
 import Services.EmployeeDAOimp;
@@ -21,13 +22,13 @@ import Services.EmployeeDAOimp;
  */
 public class EmployeeDAOimpTest {
 
-	private static EmployeeDAOimp empDAOimp;
+	private static EmployeeDAO empDAO;
 	Employee emp;
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		DBConnection.EstablishDBConnection();
-		empDAOimp = new EmployeeDAOimp();
+		empDAO = new EmployeeDAOimp();
 	}
 
 	@AfterClass
@@ -38,13 +39,13 @@ public class EmployeeDAOimpTest {
 	@Test
 	public void addEmployeeTest() {
 		emp = new Employee("Tanbir Hasan", 20000, "Bashundhara R/A");
-		assertTrue(empDAOimp.addEmployee(emp));
+		assertTrue(empDAO.addEmployee(emp));
 	}
 
 	@Test
 	public void deleteEmployeeTest() {
-		
-		assertTrue(empDAOimp.deleteEmployee(12));
+
+		assertTrue(empDAO.deleteEmployee(12));
 
 	}
 
@@ -53,7 +54,7 @@ public class EmployeeDAOimpTest {
 		emp = new Employee("Tanu Tanbir", 20000, "Bashundhara R/A");
 		emp.setEID(6);
 		emp.setEName("Tanbir");
-		assertThat(emp, is(empDAOimp.updateEmployee(emp)));
+		assertThat(emp, is(empDAO.updateEmployee(emp)));
 
 	}
 
@@ -61,9 +62,9 @@ public class EmployeeDAOimpTest {
 	public void FindEmployeeByIdTest() {
 		emp = new Employee("Tanbir Hasan", 20000, "Bashundhara R/A");
 		emp.setEID(6);
-		empDAOimp.updateEmployee(emp);
-		assertThat(emp,  is(empDAOimp.FindEmployeeById(emp.getEID()) )    );
-		
+		empDAO.updateEmployee(emp);
+		assertThat(emp, is(empDAO.FindEmployeeById(emp.getEID())));
+
 	}
 
 }

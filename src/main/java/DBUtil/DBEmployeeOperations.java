@@ -61,8 +61,9 @@ public class DBEmployeeOperations {
 		Statement statement = DBConnection.getConnectionObj().createStatement();
 		ResultSet result = statement.executeQuery(sql);
 
-		return result.next() ? new Employee(result.getInt(1),result.getString(2), result.getInt(3), result.getString(4)) : null;
+		return result.next()
+				? new Employee(result.getInt(1), result.getString(2), result.getInt(3), result.getString(4))
+				: null;
 	}
-	
 
 }
